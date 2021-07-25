@@ -20,7 +20,7 @@
         <tbody>
           <tr v-for="(todo, idx) in todos" :key="idx" class="bg-white border-b border-gray-200 hover:bg-gray-100 cursor-pointer" @click="goTo(todo.id)">
             <td class="px-5 py-5 text-sm w-1/4 ">
-              <div class="flex items-center items-end h-10">
+              <div class="lg:flex items-center items-end h-10 sm:table">
                 <div v-if="todo.user && todo.user.executorImg" class="flex-shrink-0 h-10 w-10 mr-3">
                   <img class="h-10 w-10 rounded-full" :src="todo.user.executorImg" alt="">
                 </div>

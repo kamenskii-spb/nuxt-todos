@@ -8,21 +8,27 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'Тестовое занадие на NuxtJs' },
+      { hid: 'keywords', name: 'keywords', content: 'Тест, todos, NuxtJs' },
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-
+  loading: { color: '#313A5E' },
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '@/assets/style/app.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
   ],
+
+  env: {
+    appName: 'Todos list'
+  },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

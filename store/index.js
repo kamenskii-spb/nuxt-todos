@@ -1,7 +1,6 @@
 
 export const actions = {
-  async nuxtServerInit ({ dispatch, commit }) {
-    await dispatch('todos/fetchTodos')
+  async nuxtServerInit () {
   }
 }
 export const mutations = {}

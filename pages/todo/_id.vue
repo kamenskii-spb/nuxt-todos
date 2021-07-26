@@ -1,6 +1,6 @@
 <template>
   <div class="min-w-full bg-white shadow rounded-lg h-auto ">
-    <div class="m-3 text-base bold">
+    <div class="m-3 text-base">
       <nuxt-link to="/" class="text-2xl">
         Назад
       </nuxt-link>
@@ -12,6 +12,14 @@
       <h1 class="text-3xl text-center p-4 ">
         {{ todo.title }}
       </h1>
+      <div v-if="user" class="flex flex-col items-center mt-20">
+        <span class="p-3">Исполнитель:</span>
+        <span> <img class="h-10 w-10 rounded-full" :src="user.image" :alt="user.name"></span>
+        <span>{{ user.name }}</span>
+      </div>
+      <div v-else class="mt-20">
+        <span>Исполнитель не задан</span>
+      </div>
     </div>
   </div>
 </template>
@@ -28,7 +36,8 @@ export default {
     }
     const id = params.id
     const todo = await store.dispatch('todos/loadOne', id)
-    return { todo }
+    const user = await store.dispatch('users/loadOne', todo.userId)
+    return { todo, user }
   },
   head () {
     return {

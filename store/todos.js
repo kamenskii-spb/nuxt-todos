@@ -51,7 +51,7 @@ export default {
     async loadOne (_, id) {
       try {
         const todo = await this.$axios.$get(`https://jsonplaceholder.typicode.com/todos?id=${id}`)
-        return todo[0]
+        return todo.length ? todo[0] : false
       } catch (error) {
         console.log(error)
       }
@@ -67,47 +67,3 @@ export default {
   }
 
 }
-
-// export const actions = {
-//   async fetchTodos ({ rootState }) {
-//     try {
-//       const todos = await this.$axios.$get('https://jsonplaceholder.typicode.com/todos')
-
-//       return todos.filter((t) => {
-//         const user = rootState.users.users.find(u => u.userId === t.userId)
-//         return user ? t : false
-//       })
-//     } catch (e) {
-//       console.log(e)
-//     }
-//   }
-// }
-
-// export const actions = {
-//     async fetchTodos ({ rootState }) {
-//       try {
-//         const t = await this.$axios.get('https://jsonplaceholder.typicode.com/todos')
-
-//         console.log(t)
-//         return t
-
-//         //   todos.map((t) => {
-//         //     const user = rootState.users.users.find(u => u.userId === t.userId)
-//         //     if (user) {
-//         //       t.user = user
-//         //     }
-//         //     console.log(t)
-//         //     return t
-//         //   })
-
-//         //   console.log(todos)
-
-//       //   return todos.filter((t) => {
-//       //     const user = rootState.users.users.find(u => u.userId === t.userId)
-//       //     return user ? t : false
-//       //   })
-//       } catch (e) {
-//         console.log(e)
-//       }
-//     }
-//   }

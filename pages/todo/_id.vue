@@ -1,5 +1,5 @@
 <template>
-  <div class="min-w-full bg-white shadow rounded-lg h-auto ">
+  <div v-if="todo" class="min-w-full bg-white shadow rounded-lg h-auto ">
     <div class="m-3 text-base">
       <nuxt-link to="/" class="text-2xl">
         Назад
@@ -22,6 +22,11 @@
       </div>
     </div>
   </div>
+  <div v-else>
+    <h1 class="text-3xl text-center p-4 ">
+      Задание не найдено
+    </h1>
+  </div>
 </template>
 
 <script>
@@ -31,20 +36,24 @@ export default {
     return Boolean(params.id)
   },
   async asyncData ({ store, params, route, redirect }) {
-    if (!params.id) {
-      redirect('/')
+    try {
+      if (!params.id) {
+        redirect('/')
+      }
+      const id = params.id
+      const todo = await store.dispatch('todos/loadOne', id)
+      const user = await store.dispatch('users/loadOne', todo.userId)
+      return { todo, user }
+    } catch (error) {
+
     }
-    const id = params.id
-    const todo = await store.dispatch('todos/loadOne', id)
-    const user = await store.dispatch('users/loadOne', todo.userId)
-    return { todo, user }
   },
   head () {
     return {
-      title: `${this.todo.title} | ${process.env.appName}`,
+      title: `${this.todo.title || ''} | ${process.env.appName}`,
       meta: [
-        { hid: `todod-${this.todo.id}`, name: 'description', content: this.todo.title },
-        { hid: `todok-${this.todo.id}`, name: 'keywords', content: 'todo, page, NuxtJs' }
+        { hid: `todod-${this.todo.id || ''}`, name: 'description', content: this.todo.title || '' },
+        { hid: `todok-${this.todo.id || ''}`, name: 'keywords', content: 'todo, page, NuxtJs' }
       ]
     }
   }

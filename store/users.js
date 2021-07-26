@@ -49,7 +49,7 @@ export default {
     }
   },
   actions: {
-    loadOne ({ commit }, id) {
+    loadOne (_, id) {
       try {
         return this.state.users.users.find(u => u.userId === id)
       } catch (error) {

@@ -1,8 +1,8 @@
 <template>
   <div class="py-0">
     <Loader v-if="loading" />
-    <div v-else class="inline-block min-w-full shadow rounded-lg    ">
-      <table class="min-w-full leading-normal">
+    <div v-else>
+      <table v-if="todos.length" class="min-w-full leading-normal inline-block min-w-full shadow rounded-lg">
         <thead>
           <tr>
             <th scope="col" class=" px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal">
@@ -44,6 +44,11 @@
           </tr>
         </tbody>
       </table>
+      <div v-else>
+        <h1 class="text-3xl text-center p-4 ">
+          Заданий не найдено
+        </h1>
+      </div>
     </div>
   </div>
 </template>
